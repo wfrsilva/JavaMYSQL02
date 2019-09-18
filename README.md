@@ -11,4 +11,5 @@ Informações:
 Acessar mysql pelo ms-dos:
 http://blog.tiagopassos.com/2010/10/12/acessar-o-mysql-pelo-prompt-do-windows/ 
 
-
+How to add mysql jdbc to eclipse
+https://www.youtube.com/watch?v=hfq828fZvzc
