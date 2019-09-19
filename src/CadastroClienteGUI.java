@@ -1,6 +1,10 @@
 
 import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.Statement;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+
+import javax.swing.JOptionPane;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -114,8 +118,18 @@ public class CadastroClienteGUI extends javax.swing.JFrame {
         });
 
         jBlimpar.setText("Limpar");
+        jBlimpar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+            	jBlimparActionPerformed(evt);
+            }
+        });
 
         jBinserir.setText("Inserir");
+        jBinserir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+            	jBinserirActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -239,6 +253,14 @@ public class CadastroClienteGUI extends javax.swing.JFrame {
     private void jBbuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBbuscarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jBbuscarActionPerformed
+    
+    private void jBlimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBbuscarActionPerformed
+    	 limparCampos();
+    }//GEN-LAST:event_jBbuscarActionPerformed
+    
+    private void jBinserirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBbuscarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jBbuscarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -304,13 +326,72 @@ public class CadastroClienteGUI extends javax.swing.JFrame {
     public void inserirDados(){
         try{
             Class.forName("com.mysql.jdbc.Driver");
-            Connection con = DriverManager.getConnection("jdbc://mysql://localhost/BDCadastro", "root", "");
-            Statement stmt = con.createStatement();
+            java.sql.Connection con = DriverManager.getConnection("jdbc://mysql://localhost/BDCadastro", "root", "");
+            java.sql.Statement stmt = con.createStatement();
             
-            int CadMat = Integer.parseInt(jTcodigo.getText());
+            int cadMat = Integer.parseInt(jTcodigo.getText());
             String cadNome = jTnome.getText();
             String cadCPF = jTcpf.getText();
+            String cadTelefone = jTtelefone.getText();
+            String cadLogradouro = jTlogradouro.getText();
+            String cadNumero = jTnumero.getText();
+            String cadBairro = jTbairro.getText();
+            String cadCidade = jTcidade.getText();
+            String cadEstado = jTestado.getText();
+            
+            /*mudanca de sintaxe 
+            //https://www.oficinadanet.com.br/artigo/java/criando-um-cadastro-de-usuario-em-java
+            String sql = "INSERT INTO TabFicha (Matricula, Nome, CPF, Telefone, Logradoura, Numero, Bairro , Cidade, Estado) VALUES (?,?,?,?,?,?,?,?,? )";
+            stmt.setString(1, CadMat);// tratar numero
+            stmt.setString(2, cadNome);
+            stmt.setString(3, cadCPF);*/
+            stmt.executeUpdate("insert into TabFicha (Matricula, Nome, CPF, Telefone, Logradouro, Numero, Bairro, Cidade, Estado) values ('"
+                + cadMat
+                + "','"
+                + cadNome
+                + "','"
+                + cadCPF
+                + "','"
+                + cadTelefone
+                + "','"
+                + cadLogradouro
+                + "','"
+                + cadNumero
+                + "','"
+                + cadBairro
+                + "','"
+                + cadCidade
+                + "','"
+                + cadEstado
+                + "')");
+            
+            JOptionPane.showMessageDialog(null, "Dados da Matricula " + cadMat + "Salvos!");
+            limparCampos();
+           
+            con.close();
         }//try
+        catch(SQLException erro) {
+        	JOptionPane.showMessageDialog(null, "Erro comando SQL " + erro.getMessage());
+        }//catch
+        catch (ClassNotFoundException erro) {
+        	JOptionPane.showMessageDialog(null, "ClassNotFoundException - Driver não encontrado!\r"+ erro.getMessage());
+        }//catch
         
     }//inserirDados
-}
+    
+    
+    public void limparCampos() {
+    	
+    	jTcodigo.setText("");
+    	jTnome.setText("");
+    	jTcpf.setText("");
+    	jTtelefone.setText("");
+    	jTlogradouro.setText("");
+    	jTnumero.setText("");
+    	jTbairro.setText("");
+    	jTcidade.setText("");
+    	
+    }//limparCampos 
+    
+    
+}//class
