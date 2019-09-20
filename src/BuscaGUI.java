@@ -16,12 +16,12 @@ import javax.swing.JOptionPane;
  *
  * @author w7
  */
-public class CadastroClienteGUI extends javax.swing.JFrame {
+public class BuscaGUI extends javax.swing.JFrame {
 
     /**
      * Creates new form CadastroClienteGUI
      */
-    public CadastroClienteGUI() {
+    public BuscaGUI() {
         initComponents();
     }
 
@@ -56,24 +56,32 @@ public class CadastroClienteGUI extends javax.swing.JFrame {
         jTestado = new javax.swing.JTextField();
         jBbuscar = new javax.swing.JButton();
         jBlimpar = new javax.swing.JButton();
-        jBinserir = new javax.swing.JButton();
+        jBsair = new javax.swing.JButton();
+        jBexcluir = new javax.swing.JButton();
+        jBalterar = new javax.swing.JButton();
+        jCopcaoBusca = new javax.swing.JComboBox<>();
+        jTentBuscar = new javax.swing.JTextField();
 
         jLabel2.setText("jLabel2");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(600, 400));
 
         jLcodigo.setText("Codigo:");
 
         jLtitulo.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLtitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLtitulo.setText("Cadastro de Cliente");
+        jLtitulo.setText("Busca de Cliente");
         jLtitulo.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+
+        jTcodigo.setEditable(false);
 
         jLnome.setText("Nome:");
 
+        jTnome.setEditable(false);
+
         jLcpf.setText("CPF:");
 
+        jTcpf.setEditable(false);
         jTcpf.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTcpfActionPerformed(evt);
@@ -82,8 +90,11 @@ public class CadastroClienteGUI extends javax.swing.JFrame {
 
         jLtelefone.setText("Telefone:");
 
+        jTtelefone.setEditable(false);
+
         jLlogradouro.setText("Logradouro:");
 
+        jTlogradouro.setEditable(false);
         jTlogradouro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTlogradouroActionPerformed(evt);
@@ -92,23 +103,29 @@ public class CadastroClienteGUI extends javax.swing.JFrame {
 
         jLnumero.setText("Nº:");
 
+        jTnumero.setEditable(false);
+
         jLbairro.setText("Bairro:");
 
         jLcidade.setText("Cidade:");
 
         jLestado.setText("Estado:");
 
+        jTbairro.setEditable(false);
         jTbairro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTbairroActionPerformed(evt);
             }
         });
 
+        jTcidade.setEditable(false);
         jTcidade.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTcidadeActionPerformed(evt);
             }
         });
+
+        jTestado.setEditable(false);
 
         jBbuscar.setText("Buscar");
         jBbuscar.addActionListener(new java.awt.event.ActionListener() {
@@ -118,8 +135,37 @@ public class CadastroClienteGUI extends javax.swing.JFrame {
         });
 
         jBlimpar.setText("Limpar");
+        jBlimpar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBlimparActionPerformed(evt);
+            }
+        });
 
-        jBinserir.setText("Inserir");
+        jBsair.setText("Sair");
+        jBsair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBsairActionPerformed(evt);
+            }
+        });
+
+        jBexcluir.setText("Excluir");
+        jBexcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBexcluirActionPerformed(evt);
+            }
+        });
+
+        jBalterar.setText("Alterar");
+        jBalterar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBalterarActionPerformed(evt);
+            }
+        });
+
+        jCopcaoBusca.setEditable(true);
+        jCopcaoBusca.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Opção da Busca", "Item 2", "Item 3", "Item 4" }));
+
+        jTentBuscar.setEditable(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -160,30 +206,42 @@ public class CadastroClienteGUI extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jTcidade))
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLcodigo)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jTcodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(jBbuscar))
-                                .addGap(0, 0, Short.MAX_VALUE)))
+                                .addComponent(jBexcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jBalterar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLestado)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jBlimpar)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jBinserir, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jBlimpar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
+                                .addComponent(jBsair, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jTestado)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLestado)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTestado, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(jLcodigo)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jTcodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(jCopcaoBusca, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTentBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jBbuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jLtitulo)
-                .addGap(21, 21, 21)
+                .addGap(20, 20, 20)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jBbuscar)
+                    .addComponent(jCopcaoBusca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTentBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLcodigo)
                     .addComponent(jTcodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -213,12 +271,13 @@ public class CadastroClienteGUI extends javax.swing.JFrame {
                     .addComponent(jLestado)
                     .addComponent(jTcidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTestado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jBbuscar)
                     .addComponent(jBlimpar)
-                    .addComponent(jBinserir))
-                .addContainerGap(54, Short.MAX_VALUE))
+                    .addComponent(jBsair)
+                    .addComponent(jBexcluir)
+                    .addComponent(jBalterar))
+                .addContainerGap())
         );
 
         pack();
@@ -251,6 +310,22 @@ public class CadastroClienteGUI extends javax.swing.JFrame {
     private void jBinserirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBbuscarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jBbuscarActionPerformed
+
+    private void jBsairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBsairActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jBsairActionPerformed
+
+    private void jBlimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBlimparActionPerformed
+        // TODO add your handling code here: DELETAR, REPETIDO
+    }//GEN-LAST:event_jBlimparActionPerformed
+
+    private void jBexcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBexcluirActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jBexcluirActionPerformed
+
+    private void jBalterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBalterarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jBalterarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -288,9 +363,12 @@ public class CadastroClienteGUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jBalterar;
     private javax.swing.JButton jBbuscar;
-    private javax.swing.JButton jBinserir;
+    private javax.swing.JButton jBexcluir;
     private javax.swing.JButton jBlimpar;
+    private javax.swing.JButton jBsair;
+    private javax.swing.JComboBox<String> jCopcaoBusca;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLbairro;
     private javax.swing.JLabel jLcidade;
@@ -306,6 +384,7 @@ public class CadastroClienteGUI extends javax.swing.JFrame {
     private javax.swing.JTextField jTcidade;
     private javax.swing.JTextField jTcodigo;
     private javax.swing.JTextField jTcpf;
+    private javax.swing.JTextField jTentBuscar;
     private javax.swing.JTextField jTestado;
     private javax.swing.JTextField jTlogradouro;
     private javax.swing.JTextField jTnome;
@@ -371,7 +450,8 @@ public class CadastroClienteGUI extends javax.swing.JFrame {
     
     
     public void limparCampos() {
-    	
+        
+    	jTentBuscar.setText("");
     	jTcodigo.setText("");
     	jTnome.setText("");
     	jTcpf.setText("");
@@ -384,5 +464,25 @@ public class CadastroClienteGUI extends javax.swing.JFrame {
     	
     }//limparCampos 
     
+    public void ativarCampos(){
+        
+        jTentBuscar.setEnabled(true);
+    	jTcodigo.setEnabled(true);
+    	jTnome.setEnabled(true);
+    	jTcpf.setEnabled(true);
+    	jTtelefone.setEnabled(true);
+    	jTlogradouro.setEnabled(true);
+    	jTnumero.setEnabled(true);
+    	jTbairro.setEnabled(true);
+    	jTcidade.setEnabled(true);
+        jTestado.setEnabled(true);
+        
+    }//ativarCampos
+
+    public void BurcarDados(){
+        boolean consulta = true;
+        axyz
+        
+    }//BurcarDados
     
 }//class
