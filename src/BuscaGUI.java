@@ -2,6 +2,7 @@
 import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.Statement;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import javax.swing.JOptionPane;
@@ -303,10 +304,6 @@ public class BuscaGUI extends javax.swing.JFrame {
         // TODO add your handling code here:
     }                                        
     
-    private void jBlimparActionPerformed(java.awt.event.ActionEvent evt) {                                         
-    	 limparCampos();
-    }                                        
-    
     private void jBinserirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBbuscarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jBbuscarActionPerformed
@@ -481,8 +478,167 @@ public class BuscaGUI extends javax.swing.JFrame {
 
     public void BurcarDados(){
         boolean consulta = true;
-        axyz
+        try {
+        	Class.forName("com.mysql.jdbc.Driver");
+        	java.sql.Connection con = DriverManager.getConnection("jdbc://mysql://localhost/BDCadastro", "root", "");
+        	java.sql.Statement stmt = con.createStatement();
+        	
+        	int buscaCodigo = Integer.parseInt(jTentBuscar.getText());
+        	//String buscaCPF = jTentBuscar.getText();
+        	String buscaCPF = jTcpf.getText();
+        	
+        	ResultSet rs = null;
+        	
+        	if(jCopcaoBusca.getSelectedIndex()==0) {
+        		JOptionPane.showMessageDialog(null, "Escolha opção de Busca!");
+        	}//if
+        	else if(jCopcaoBusca.getSelectedIndex()==1) {
+        		rs = stmt.executeQuery("Select * from TabFciha where Matricula = " + buscaCodigo);
+        		
+        		while (rs.next()) {
+        		
+        			int mat = rs.getInt("Matricula");
+        			jTcodigo.setText(String.valueOf(mat));
+        			
+        			jTnome.setText(rs.getString("Nome"));
+        			jTcpf.setText(rs.getString("CPF"));
+        			jTtelefone.setText(rs.getString("Telefone"));
+        			jTlogradouro.setText(rs.getString("Logradouro"));
+        			jTnumero.setText(rs.getString("Numero"));
+        			jTbairro.setText(rs.getString("Bairro"));
+        			jTcidade.setText(rs.getString("Cidade"));
+        			jTestado.setText(rs.getString("Estado"));
+        			
+        			consulta = false;
+        			JOptionPane.showMessageDialog(null, "Dados encontrados!");
+        			
+        			
+        		}//while
+        		
+        	}//else if
+        	else if(jCopcaoBusca.getSelectedIndex()==2) {
+        		rs = stmt.executeQuery("Select * from TabFicha where CPF = " + buscaCPF);
+        		
+        		while(rs.next()) {
+        			String cpf = rs.getString("CPF");
+        			jTcpf.setText(cpf);
+        			
+        			jTnome.setText(rs.getString("Nome"));
+        			jTtelefone.setText(rs.getString("Telefone"));
+        			jTlogradouro.setText(rs.getString("Logradouro"));
+        			jTnumero.setText(rs.getString("Numero"));
+        			jTbairro.setText(rs.getString("Bairro"));
+        			jTcidade.setText(rs.getString("Cidade"));
+        			jTestado.setText(rs.getString("Estado"));
+        			
+        			consulta = false;
+        			JOptionPane.showMessageDialog(null, "Dados encontrados!");
+        			
+        		}//while
+        		
+        	}//else if
+        	
+        	if(consulta) {
+        		JOptionPane.showMessageDialog(null, "Dados NÃO encontrados!");
+        	}//if
+        	
+        	rs.close();
+        	stmt.close();
+        	con.close();
+        	
+        	
+        }//try
+        catch (SQLException erro) {
+        	JOptionPane.showMessageDialog(null,  "Erro comando SQL" + erro.getMessage());
+        }//catch
+        catch (ClassNotFoundException erro) {
+        	JOptionPane.showMessageDialog(null, "Driver NÃO Encontrado");
+        }//catch
         
     }//BurcarDados
+    
+    public void alterarDados() {
+    	try {
+    		Class.forName("com.mysql.jbdc.Driver");
+    		
+    		java.sql.Connection con = DriverManager.getConnection("jbdc:mysql://localhost/BDCadastro", "root", "" );
+    		
+    		java.sql.Statement stmt = con.createStatement();
+    		
+    		int consMatricula = Integer.parseInt(jTentBuscar.getText());
+    		String consCPF = jTentBuscar.getText();
+    		
+    		int cadMat = Integer.parseInt(jTcodigo.getText());
+    		String cadNome = jTnome.getText();
+    		String cadCPF = jTcpf.getText();
+    		String cadTelefone = jTtelefone.getText();
+    		String cadLogradouro = jTlogradouro.getText();
+    		int cadNumero = Integer.parseInt(jTnumero.getText());
+    		String cadBairro = jTbairro.getText();
+    		String cadCidade = jTcidade.getText();
+    		String cadEstado = jTestado.getText();
+    		
+    		if(jCopcaoBusca.getSelectedIndex()==1) {
+    			
+    			int registro = stmt.executeUpdate("update TabFicha set "
+    					+ "Nome= '" + cadNome + "',CPF='" + cadCPF + "',Telefone='" + cadTelefone + "',Logradouro='" + cadLogradouro
+    					+ "',Numero='" + cadNumero + "',Bairro='" + cadBairro + "',Cidade='" + cadCidade + "',Estado='" + cadEstado + "',Matricula='" + cadMat  
+    					+ "' where Matricula=" + consMatricula);
+    		
+    			if(registro!=0 ) {
+        			JOptionPane.showMessageDialog(null, "Dados Alterados!");
+        		}//if
+    			else {
+    				JOptionPane.showMessageDialog(null, "Dados NÃO Alterados!");
+    			}//else
+    			
+    			stmt.close();
+    			con.close();
+    			
+    		}//if
+    		else if(jCopcaoBusca.getSelectedIndex()==2) {
+    			
+    			int registro = stmt.executeUpdate("update TabFicha set "
+    					+ "Nome= '" + cadNome + "',CPF='" + cadCPF + "',Telefone='" + cadTelefone + "',Logradouro='" + cadLogradouro
+    					+ "',Numero='" + cadNumero + "',Bairro='" + cadBairro + "',Cidade='" + cadCidade + "',Estado='" + cadEstado + "',Matricula='" + cadMat  
+    					+ "' where CPF=" + consCPF);
+    			
+    			if(registro!=0) {
+    				JOptionPane.showMessageDialog(null, "Dados Alterados!");
+    			}//if
+    			else {
+    				JOptionPane.showMessageDialog(null, "Dados NÂO Alterados!");
+    			}//else
+    			
+    			stmt.close();
+    			con.close();
+    			
+    		}//else if
+    		
+    	}//try
+    	catch (SQLException erro) {
+        	JOptionPane.showMessageDialog(null,  "Erro comando SQL" + erro.getMessage());
+        }//catch
+        catch (ClassNotFoundException erro) {
+        	JOptionPane.showMessageDialog(null, "Driver NÃO Encontrado");
+        }//catch
+    		
+    }//alterarDados
+    
+    public void excluirDados() {
+    	
+    	try {
+    		
+    		Class.forName("com.mysql.jbdc.Driver");
+    		java.sql.Connection con = DriverManager.getConnection("jbdc://mysql://localhost/BDCadastro", "root", "");
+    		java.sql.Statement stmt = con.createStatement();
+    		
+    		int excluirMatricula = Integer.parseInt(jTentBuscar.getText());
+    		aaaa
+    		
+    		
+    	}//try
+    	
+    }//excluirDados
     
 }//class
