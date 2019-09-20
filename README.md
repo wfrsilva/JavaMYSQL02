@@ -15,7 +15,9 @@ Se for o XAMPP, por exemplo, o executável fica em c:\xampp\mysql\bin
 
 Depois que abrir a telinha preta, digite:
 mysql -u <nome de usuário*> -p
+
 http://blog.tiagopassos.com/2010/10/12/acessar-o-mysql-pelo-prompt-do-windows/ 
 
 How to add mysql jdbc to eclipse
+
 https://www.youtube.com/watch?v=hfq828fZvzc
