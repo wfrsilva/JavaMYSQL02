@@ -634,10 +634,29 @@ public class BuscaGUI extends javax.swing.JFrame {
     		java.sql.Statement stmt = con.createStatement();
     		
     		int excluirMatricula = Integer.parseInt(jTentBuscar.getText());
-    		aaaa
+    		int registro = stmt.executeUpdate("delete from Tabficha where Matricula="+ excluirMatricula);
     		
+    		if(registro != 0) {
+    			JOptionPane.showMessageDialog(null,"Dados da Matricula " + excluirMatricula + "Excluídos!");
+    		}//if
+    		else {
+    			JOptionPane.showMessageDialog(null,  "Dados NÃO Excluídos!");
+    		}//else
+    		
+    		stmt.close();
+    		
+    		limpar();
+    		
+    		con.close();
     		
     	}//try
+    	catch(SQLException erro) {
+    		JOptionPane.showMessageDialog(null,  "Erro Cmdo SQL" + erro.getMessage());
+    	}//catch
+    	catch(ClassNotFoundException erro){
+    		JOptionPane.showMessageDialog(null,  "Driver NÃO Encontrado!");
+    	}//catch
+    	
     	
     }//excluirDados
     
