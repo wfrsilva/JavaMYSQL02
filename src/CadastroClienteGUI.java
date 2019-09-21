@@ -118,8 +118,18 @@ public class CadastroClienteGUI extends javax.swing.JFrame {
         });
 
         jBlimpar.setText("Limpar");
+        jBlimpar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBlimparActionPerformed(evt);
+            }
+        });
 
         jBinserir.setText("Inserir");
+        jBinserir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBinserirActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -240,17 +250,25 @@ public class CadastroClienteGUI extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTcidadeActionPerformed
 
-    private void jBbuscarActionPerformed(java.awt.event.ActionEvent evt) {                                         
-        // TODO add your handling code here:
+    private void jBbuscarActionPerformed(java.awt.event.ActionEvent evt) {  
+         System.out.println("INICIO  jBbuscarActionPerformed");
+        BuscaGUI  b = new BuscaGUI();
+        b.setVisible(true);
     }                                        
     
-    private void jBlimparActionPerformed(java.awt.event.ActionEvent evt) {                                         
+    private void jBlimparActionPerformed(java.awt.event.ActionEvent evt) {
+        System.out.println("INICIO  jBlimparActionPerformed");
     	 limparCampos();
+         System.out.println("FIM  jBlimparActionPerformed");
     }                                        
     
-    private void jBinserirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBbuscarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jBbuscarActionPerformed
+
+    private void jBinserirActionPerformed(java.awt.event.ActionEvent evt) {
+        System.out.println("INICIO  jBinserirActionPerformed");
+        inserirDados();
+        System.out.println("FIM  jBinserirActionPerformed");
+
+    }//jBinserirActionPerformed
 
     /**
      * @param args the command line arguments
@@ -316,7 +334,7 @@ public class CadastroClienteGUI extends javax.swing.JFrame {
     public void inserirDados(){
         try{
             Class.forName("com.mysql.jdbc.Driver");
-            java.sql.Connection con = DriverManager.getConnection("jdbc://mysql://localhost/BDCadastro", "root", "");
+            java.sql.Connection con = DriverManager.getConnection("jdbc:mysql://localhost/BDCadastro", "root", "");
             java.sql.Statement stmt = con.createStatement();
             
             int cadMat = Integer.parseInt(jTcodigo.getText());
@@ -355,7 +373,7 @@ public class CadastroClienteGUI extends javax.swing.JFrame {
                 + cadEstado
                 + "')");
             
-            JOptionPane.showMessageDialog(null, "Dados da Matricula " + cadMat + "Salvos!");
+            JOptionPane.showMessageDialog(null, "Dados da Matricula " + cadMat + " Salvos!");
             limparCampos();
            
             con.close();

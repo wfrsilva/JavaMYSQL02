@@ -165,7 +165,7 @@ public class BuscaGUI extends javax.swing.JFrame {
         });
 
         jCopcaoBusca.setEditable(true);
-        jCopcaoBusca.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Opção da Busca", "Item 2", "Item 3", "Item 4" }));
+        jCopcaoBusca.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Opção da Busca", "Codigo", "CPF", "Todos" }));
         jCopcaoBusca.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jCopcaoBuscaActionPerformed(evt);
@@ -310,12 +310,12 @@ public class BuscaGUI extends javax.swing.JFrame {
         // TODO add your handling code here:
     }                                        
     
-    private void jBinserirActionPerformed(java.awt.event.ActionEvent evt) {
-        
-    	ativarCampos();
-        buscarDados();
-        
-    }//jBinserirActionPerformed
+//    private void jBinserirActionPerformed(java.awt.event.ActionEvent evt) {
+//        
+//    	ativarCampos();
+//        buscarDados();
+//        
+//    }//jBinserirActionPerformed
 
     private void jBsairActionPerformed(java.awt.event.ActionEvent evt) {
     	
@@ -344,12 +344,16 @@ public class BuscaGUI extends javax.swing.JFrame {
     	if(jCopcaoBusca.getSelectedIndex() == 1){
             limparCampos();
             jTentBuscar.setEnabled(true);
+            jTentBuscar.setText("Digite Codigo ...");
+            ativarCampos();
         }//if
         
-        if(jCopcaoBusca.getSelectedIndex()==2){
+        if(jCopcaoBusca.getSelectedIndex() == 2){
              limparCampos();
+             jTentBuscar.setText("Digite CPF ...");
+             ativarCampos();
         }//if
-        else if (jCopcaoBusca.getSelectedIndex()==3){
+        else if (jCopcaoBusca.getSelectedIndex() == 3){
             BuscaModificadaGUI busca = new BuscaModificadaGUI() ;
             busca.setVisible(true);
             limparCampos();
@@ -506,6 +510,19 @@ public class BuscaGUI extends javax.swing.JFrame {
     	jTcidade.setEnabled(true);
         jTestado.setEnabled(true);
         
+        jTentBuscar.setEditable(true);
+    	jTcodigo.setEditable(true);
+    	jTnome.setEditable(true);
+    	jTcpf.setEditable(true);
+    	jTtelefone.setEditable(true);
+    	jTlogradouro.setEditable(true);
+    	jTnumero.setEditable(true);
+    	jTbairro.setEditable(true);
+    	jTcidade.setEditable(true);
+        jTestado.setEditable(true);
+        
+        System.out.println("jTestado.setEnabled(true)");
+        
     }//ativarCampos
 
     public void buscarDados(){
@@ -548,7 +565,7 @@ public class BuscaGUI extends javax.swing.JFrame {
         		}//while
         		
         	}//else if
-        	else if(jCopcaoBusca.getSelectedIndex()==2) {
+        	else if(jCopcaoBusca.getSelectedIndex() == 2) {
         		rs = stmt.executeQuery("Select * from TabFicha where CPF = " + buscaCPF);
         		
         		while(rs.next()) {
@@ -610,7 +627,7 @@ public class BuscaGUI extends javax.swing.JFrame {
     		String cadCidade = jTcidade.getText();
     		String cadEstado = jTestado.getText();
     		
-    		if(jCopcaoBusca.getSelectedIndex()==1) {
+    		if(jCopcaoBusca.getSelectedIndex() == 1) {
     			
     			int registro = stmt.executeUpdate("update TabFicha set "
     					+ "Nome= '" + cadNome + "',CPF='" + cadCPF + "',Telefone='" + cadTelefone + "',Logradouro='" + cadLogradouro
@@ -628,7 +645,7 @@ public class BuscaGUI extends javax.swing.JFrame {
     			con.close();
     			
     		}//if
-    		else if(jCopcaoBusca.getSelectedIndex()==2) {
+    		else if(jCopcaoBusca.getSelectedIndex() == 2) {
     			
     			int registro = stmt.executeUpdate("update TabFicha set "
     					+ "Nome= '" + cadNome + "',CPF='" + cadCPF + "',Telefone='" + cadTelefone + "',Logradouro='" + cadLogradouro
@@ -639,7 +656,7 @@ public class BuscaGUI extends javax.swing.JFrame {
     				JOptionPane.showMessageDialog(null, "Dados Alterados!");
     			}//if
     			else {
-    				JOptionPane.showMessageDialog(null, "Dados NÂO Alterados!");
+    				JOptionPane.showMessageDialog(null, "Dados NÃO Alterados!");
     			}//else
     			
     			stmt.close();
@@ -693,7 +710,7 @@ public class BuscaGUI extends javax.swing.JFrame {
     }//excluirDados
 
     private void sair() {
-        frameBusca.dispose(); 
+        this.dispose(); 
     }
     
 }//class
