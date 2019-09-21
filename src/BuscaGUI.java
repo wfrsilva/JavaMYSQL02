@@ -62,8 +62,9 @@ public class BuscaGUI extends javax.swing.JFrame {
         jBalterar = new javax.swing.JButton();
         jCopcaoBusca = new javax.swing.JComboBox<>();
         jTentBuscar = new javax.swing.JTextField();
+        panel = new javax.swing.JPanel();
 
-        jLabel2.setText("jLabel2");
+
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -165,6 +166,11 @@ public class BuscaGUI extends javax.swing.JFrame {
 
         jCopcaoBusca.setEditable(true);
         jCopcaoBusca.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Opção da Busca", "Item 2", "Item 3", "Item 4" }));
+        jCopcaoBusca.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCopcaoBuscaActionPerformed(evt);
+            }
+        });
 
         jTentBuscar.setEditable(false);
 
@@ -304,35 +310,59 @@ public class BuscaGUI extends javax.swing.JFrame {
         // TODO add your handling code here:
     }                                        
     
-    private void jBinserirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBbuscarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jBbuscarActionPerformed
+    private void jBinserirActionPerformed(java.awt.event.ActionEvent evt) {
+        
+    	ativarCampos();
+        buscarDados();
+        
+    }//jBinserirActionPerformed
 
-    private void jBsairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBsairActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jBsairActionPerformed
+    private void jBsairActionPerformed(java.awt.event.ActionEvent evt) {
+    	
+    	sair();
+    	
+    }//jBsairActionPerformed
 
-    private void jBlimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBlimparActionPerformed
-        // TODO add your handling code here: DELETAR, REPETIDO
-    }//GEN-LAST:event_jBlimparActionPerformed
+    private void jBlimparActionPerformed(java.awt.event.ActionEvent evt) {
+    	
+        limparCampos();
+        
+    }//jBlimparActionPerformed
 
     private void jBexcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBexcluirActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jBexcluirActionPerformed
 
-    private void jBalterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBalterarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jBalterarActionPerformed
+    private void jBalterarActionPerformed(java.awt.event.ActionEvent evt) {
+       
+    	alterarDados();
+       
+    }//jBalterarActionPerformed
+
+    private void jCopcaoBuscaActionPerformed(java.awt.event.ActionEvent evt) {
+        
+    	if(jCopcaoBusca.getSelectedIndex() == 1){
+            limparCampos();
+            jTentBuscar.setEnabled(true);
+        }//if
+        
+        if(jCopcaoBusca.getSelectedIndex()==2){
+             limparCampos();
+        }//if
+        else if (jCopcaoBusca.getSelectedIndex()==3){
+            BuscaModificadaGUI busca = new BuscaModificadaGUI() ;
+            busca.setVisible(true);
+            limparCampos();
+            
+        }//elseif
+        
+    }//jCopcaoBuscaActionPerformed    
 
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
+
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -387,12 +417,14 @@ public class BuscaGUI extends javax.swing.JFrame {
     private javax.swing.JTextField jTnome;
     private javax.swing.JTextField jTnumero;
     private javax.swing.JTextField jTtelefone;
+    static javax.swing.JPanel panel;
+    static BuscaGUI frameBusca;
     // End of variables declaration//GEN-END:variables
 
     public void inserirDados(){
         try{
             Class.forName("com.mysql.jdbc.Driver");
-            java.sql.Connection con = DriverManager.getConnection("jdbc://mysql://localhost/BDCadastro", "root", "");
+            java.sql.Connection con = DriverManager.getConnection("jdbc:mysql://localhost/BDCadastro", "root", "");
             java.sql.Statement stmt = con.createStatement();
             
             int cadMat = Integer.parseInt(jTcodigo.getText());
@@ -476,11 +508,11 @@ public class BuscaGUI extends javax.swing.JFrame {
         
     }//ativarCampos
 
-    public void BurcarDados(){
+    public void buscarDados(){
         boolean consulta = true;
         try {
         	Class.forName("com.mysql.jdbc.Driver");
-        	java.sql.Connection con = DriverManager.getConnection("jdbc://mysql://localhost/BDCadastro", "root", "");
+        	java.sql.Connection con = DriverManager.getConnection("jdbc:mysql://localhost/BDCadastro", "root", "");
         	java.sql.Statement stmt = con.createStatement();
         	
         	int buscaCodigo = Integer.parseInt(jTentBuscar.getText());
@@ -559,9 +591,9 @@ public class BuscaGUI extends javax.swing.JFrame {
     
     public void alterarDados() {
     	try {
-    		Class.forName("com.mysql.jbdc.Driver");
+    		Class.forName("com.mysql.jdbc.Driver");
     		
-    		java.sql.Connection con = DriverManager.getConnection("jbdc:mysql://localhost/BDCadastro", "root", "" );
+    		java.sql.Connection con = DriverManager.getConnection("jdbc:mysql://localhost/BDCadastro", "root", "" );
     		
     		java.sql.Statement stmt = con.createStatement();
     		
@@ -629,8 +661,8 @@ public class BuscaGUI extends javax.swing.JFrame {
     	
     	try {
     		
-    		Class.forName("com.mysql.jbdc.Driver");
-    		java.sql.Connection con = DriverManager.getConnection("jbdc://mysql://localhost/BDCadastro", "root", "");
+    		Class.forName("com.mysql.jdbc.Driver");
+    		java.sql.Connection con = DriverManager.getConnection("jdbc:mysql://localhost/BDCadastro", "root", "");
     		java.sql.Statement stmt = con.createStatement();
     		
     		int excluirMatricula = Integer.parseInt(jTentBuscar.getText());
@@ -645,7 +677,7 @@ public class BuscaGUI extends javax.swing.JFrame {
     		
     		stmt.close();
     		
-    		limpar();
+    		limparCampos();
     		
     		con.close();
     		
@@ -659,5 +691,9 @@ public class BuscaGUI extends javax.swing.JFrame {
     	
     	
     }//excluirDados
+
+    private void sair() {
+        frameBusca.dispose(); 
+    }
     
 }//class

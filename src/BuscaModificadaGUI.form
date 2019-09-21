@@ -29,7 +29,7 @@
                   <Component id="jScrollPane1" max="32767" attributes="0"/>
                   <Component id="jLtitulo" alignment="0" pref="580" max="32767" attributes="0"/>
                   <Group type="102" alignment="0" attributes="0">
-                      <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLbuscarCodigo" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="jTbuscar" min="-2" pref="250" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
@@ -46,7 +46,7 @@
               <Component id="jLtitulo" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jLbuscarCodigo" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jTbuscar" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jBbuscar" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
@@ -68,7 +68,7 @@
         <Property name="horizontalTextPosition" type="int" value="0"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel1">
+    <Component class="javax.swing.JLabel" name="jLbuscarCodigo">
       <Properties>
         <Property name="text" type="java.lang.String" value="C&#xf3;digo Desejado (nenhum p/ todos)"/>
       </Properties>

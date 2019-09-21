@@ -1,3 +1,31 @@
+
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableModel;
+
+
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -27,7 +55,7 @@ public class BuscaModificadaGUI extends javax.swing.JFrame {
     private void initComponents() {
 
         jLtitulo = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
+        jLbuscarCodigo = new javax.swing.JLabel();
         jTbuscar = new javax.swing.JTextField();
         jBbuscar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -40,7 +68,7 @@ public class BuscaModificadaGUI extends javax.swing.JFrame {
         jLtitulo.setText("Busca Modificada");
         jLtitulo.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
-        jLabel1.setText("Código Desejado (nenhum p/ todos)");
+        jLbuscarCodigo.setText("Código Desejado (nenhum p/ todos)");
 
         jBbuscar.setText("Buscar");
         jBbuscar.addActionListener(new java.awt.event.ActionListener() {
@@ -72,7 +100,7 @@ public class BuscaModificadaGUI extends javax.swing.JFrame {
                     .addComponent(jScrollPane1)
                     .addComponent(jLtitulo, javax.swing.GroupLayout.DEFAULT_SIZE, 580, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
+                        .addComponent(jLbuscarCodigo)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jTbuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -85,7 +113,7 @@ public class BuscaModificadaGUI extends javax.swing.JFrame {
                 .addComponent(jLtitulo)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
+                    .addComponent(jLbuscarCodigo)
                     .addComponent(jTbuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jBbuscar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -96,19 +124,15 @@ public class BuscaModificadaGUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jBbuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBbuscarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jBbuscarActionPerformed
+    private void jBbuscarActionPerformed(java.awt.event.ActionEvent evt) {
+        buscarDados();
+    }//jBbuscarActionPerformed
 
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
+   
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -137,10 +161,88 @@ public class BuscaModificadaGUI extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBbuscar;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLbuscarCodigo;
     private javax.swing.JLabel jLtitulo;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTbuscar;
     private javax.swing.JTable jTtabela;
     // End of variables declaration//GEN-END:variables
-}
+
+
+    public void buscarDados(){
+
+        boolean consulta = true;
+        try{
+            Class.forName("com.mysql.jdbc.Driver");
+            java.sql.Connection con = DriverManager.getConnection("jdbc:mysql://localhost/BDCadastro", "root", "");
+            java.sql.Statement stmt = con.createStatement();
+            ResultSet rs;
+
+            if(!jTbuscar.getText().equals("")){
+                int consMatricula = Integer.parseInt(jTbuscar.getText());
+                rs = stmt.executeQuery("Select * from TabFicha where Matricula=" + consMatricula);
+            }//if
+            else{
+                rs = stmt.executeQuery("Select * from Tabficha");
+            }//else
+
+            DefaultTableModel modelo = new DefaultTableModel();
+            modelo.addColumn("Codigo");
+            modelo.addColumn("Nome");
+            modelo.addColumn("CPF");
+            modelo.addColumn("Telefone");
+            modelo.addColumn("Logradour");
+            modelo.addColumn("Numero");
+            modelo.addColumn("Cidade");
+            modelo.addColumn("Estado");
+
+            while(rs.next()){
+                
+                int mat = rs.getInt("Matricula");
+                modelo.addRow(new Object[]{
+                    String.valueOf(mat), 
+                    rs.getString("Nome"),
+                    rs.getString("CPF"),
+                    rs.getString("Telefone"),
+                    rs.getString("Logradouro"),
+                    rs.getString("Numero"),
+                    rs.getString("Bairro"),
+                    rs.getString("Cidade"),
+                    rs.getString("Estado")
+                });
+                consulta = false;
+
+            }//while
+
+            jTtabela.setModel(modelo);
+
+            if(consulta){
+                JOptionPane.showMessageDialog(null, "Dados NÃO encontrados");
+            }//if
+            else{
+                JOptionPane.showMessageDialog(null, "Dados encontrados");
+            }//else
+
+            rs.close();
+            stmt.close();
+            con.close();
+
+        }//try
+        catch (SQLException erro){
+            JOptionPane.showMessageDialog(null, "Erro comando SQL " + erro.getMessage());
+        }//catch
+        catch (Exception  erro){
+            JOptionPane.showMessageDialog(null, "Driver NÃO Encontrado");
+        }//catch
+
+    }//buscarDados
+
+
+
+
+
+
+
+
+
+}//class
