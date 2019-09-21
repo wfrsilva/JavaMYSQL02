@@ -307,7 +307,8 @@ public class BuscaGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jTcidadeActionPerformed
 
     private void jBbuscarActionPerformed(java.awt.event.ActionEvent evt) {                                         
-        // TODO add your handling code here:
+    	ativarCampos();
+		buscarDados();
     }                                        
     
 //    private void jBinserirActionPerformed(java.awt.event.ActionEvent evt) {
@@ -542,7 +543,7 @@ public class BuscaGUI extends javax.swing.JFrame {
         		JOptionPane.showMessageDialog(null, "Escolha opção de Busca!");
         	}//if
         	else if(jCopcaoBusca.getSelectedIndex()==1) {
-        		rs = stmt.executeQuery("Select * from TabFciha where Matricula = " + buscaCodigo);
+        		rs = stmt.executeQuery("Select * from TabFicha where Matricula = " + buscaCodigo);
         		
         		while (rs.next()) {
         		
@@ -683,7 +684,7 @@ public class BuscaGUI extends javax.swing.JFrame {
     		java.sql.Statement stmt = con.createStatement();
     		
     		int excluirMatricula = Integer.parseInt(jTentBuscar.getText());
-    		int registro = stmt.executeUpdate("delete from Tabficha where Matricula="+ excluirMatricula);
+    		int registro = stmt.executeUpdate("delete from TabFicha where Matricula="+ excluirMatricula);
     		
     		if(registro != 0) {
     			JOptionPane.showMessageDialog(null,"Dados da Matricula " + excluirMatricula + "Excluídos!");
