@@ -157,7 +157,7 @@ public class BuscaGUI extends javax.swing.JFrame {
         });
 
         jCopcaoBusca.setEditable(true);
-        jCopcaoBusca.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Opção da Busca", "Codigo", "CPF", "Todos" }));
+        jCopcaoBusca.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Opção da Busca",  "Codigo",  "CPF",  "Todos" }));
         jCopcaoBusca.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jCopcaoBuscaActionPerformed(evt);
