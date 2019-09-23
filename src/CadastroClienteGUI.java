@@ -74,21 +74,9 @@ public class CadastroClienteGUI extends javax.swing.JFrame {
 
         jLcpf.setText("CPF:");
 
-        jTcpf.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTcpfActionPerformed(evt);
-            }
-        });
-
         jLtelefone.setText("Telefone:");
 
         jLlogradouro.setText("Logradouro:");
-
-        jTlogradouro.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTlogradouroActionPerformed(evt);
-            }
-        });
 
         jLnumero.setText("Nº:");
 
@@ -98,18 +86,6 @@ public class CadastroClienteGUI extends javax.swing.JFrame {
 
         jLestado.setText("Estado:");
 
-        jTbairro.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTbairroActionPerformed(evt);
-            }
-        });
-
-        jTcidade.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTcidadeActionPerformed(evt);
-            }
-        });
-
         jBbuscar.setText("Buscar");
         jBbuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -118,11 +94,6 @@ public class CadastroClienteGUI extends javax.swing.JFrame {
         });
 
         jBlimpar.setText("Limpar");
-        jBlimpar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBlimparActionPerformed(evt);
-            }
-        });
 
         jBinserir.setText("Inserir");
         jBinserir.addActionListener(new java.awt.event.ActionListener() {
@@ -233,22 +204,6 @@ public class CadastroClienteGUI extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jTcpfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTcpfActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTcpfActionPerformed
-
-    private void jTlogradouroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTlogradouroActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTlogradouroActionPerformed
-
-    private void jTbairroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTbairroActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTbairroActionPerformed
-
-    private void jTcidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTcidadeActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTcidadeActionPerformed
 
     private void jBbuscarActionPerformed(java.awt.event.ActionEvent evt) {  
          System.out.println("INICIO  jBbuscarActionPerformed");

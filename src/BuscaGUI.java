@@ -66,6 +66,7 @@ public class BuscaGUI extends javax.swing.JFrame {
         jLabel2.setText("jLabel2");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Buscar");
 
         jLcodigo.setText("Codigo:");
 
@@ -83,11 +84,6 @@ public class BuscaGUI extends javax.swing.JFrame {
         jLcpf.setText("CPF:");
 
         jTcpf.setEditable(false);
-        jTcpf.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTcpfActionPerformed(evt);
-            }
-        });
 
         jLtelefone.setText("Telefone:");
 
@@ -96,12 +92,7 @@ public class BuscaGUI extends javax.swing.JFrame {
         jLlogradouro.setText("Logradouro:");
 
         jTlogradouro.setEditable(false);
-        jTlogradouro.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTlogradouroActionPerformed(evt);
-            }
-        });
-
+        
         jLnumero.setText("Nº:");
 
         jTnumero.setEditable(false);
@@ -113,19 +104,7 @@ public class BuscaGUI extends javax.swing.JFrame {
         jLestado.setText("Estado:");
 
         jTbairro.setEditable(false);
-        jTbairro.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTbairroActionPerformed(evt);
-            }
-        });
-
-        jTcidade.setEditable(false);
-        jTcidade.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTcidadeActionPerformed(evt);
-            }
-        });
-
+   
         jTestado.setEditable(false);
 
         jBbuscar.setText("Buscar");
@@ -295,34 +274,11 @@ public class BuscaGUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTcpfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTcpfActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTcpfActionPerformed
-
-    private void jTlogradouroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTlogradouroActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTlogradouroActionPerformed
-
-    private void jTbairroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTbairroActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTbairroActionPerformed
-
-    private void jTcidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTcidadeActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTcidadeActionPerformed
-
     private void jBbuscarActionPerformed(java.awt.event.ActionEvent evt) {                                         
     	ativarCampos();
 		buscarDados();
     }                                        
     
-//    private void jBinserirActionPerformed(java.awt.event.ActionEvent evt) {
-//        
-//    	ativarCampos();
-//        buscarDados();
-//        
-//    }//jBinserirActionPerformed
-
     private void jBsairActionPerformed(java.awt.event.ActionEvent evt) {
     	
     	sair();
@@ -335,11 +291,11 @@ public class BuscaGUI extends javax.swing.JFrame {
         
     }//jBlimparActionPerformed
 
-    private void jBexcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBexcluirActionPerformed
+    private void jBexcluirActionPerformed(java.awt.event.ActionEvent evt) {
         excluirDados();
-    }//GEN-LAST:event_jBexcluirActionPerformed
+    }
 
-    private void jTentBuscarFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTentBuscarFocusGained
+    private void jTentBuscarFocusGained(java.awt.event.FocusEvent evt) {
         System.out.println("private void jTentBuscarFocusGained")  ;
         if(jTentBuscar.getText().equals("Digite CPF ...")){
             jTentBuscar.setText("");
@@ -347,13 +303,11 @@ public class BuscaGUI extends javax.swing.JFrame {
         else if(jTentBuscar.getText().equals("Digite Codigo ...")){
             jTentBuscar.setText("");
         }//else if
-                     
+    }
 
-    }//GEN-LAST:event_jTentBuscarFocusGained
-
-    private void jBalterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBalterarActionPerformed
+    private void jBalterarActionPerformed(java.awt.event.ActionEvent evt) {
             alterarDados();
-    }//GEN-LAST:event_jBalterarActionPerformed
+    }
 
     private void jCopcaoBuscaActionPerformed(java.awt.event.ActionEvent evt) {
         

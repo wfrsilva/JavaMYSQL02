@@ -62,6 +62,7 @@ public class BuscaModificadaGUI extends javax.swing.JFrame {
         jTtabela = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Busca Modificada");
 
         jLtitulo.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLtitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -236,13 +237,5 @@ public class BuscaModificadaGUI extends javax.swing.JFrame {
         }//catch
 
     }//buscarDados
-
-
-
-
-
-
-
-
 
 }//class
