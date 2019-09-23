@@ -62,11 +62,10 @@ public class BuscaGUI extends javax.swing.JFrame {
         jBalterar = new javax.swing.JButton();
         jCopcaoBusca = new javax.swing.JComboBox<>();
         jTentBuscar = new javax.swing.JTextField();
-        panel = new javax.swing.JPanel();
 
+        jLabel2.setText("jLabel2");
 
-
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLcodigo.setText("Codigo:");
 
@@ -165,7 +164,7 @@ public class BuscaGUI extends javax.swing.JFrame {
         });
 
         jCopcaoBusca.setEditable(true);
-        jCopcaoBusca.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Opção da Busca", "Codigo", "CPF", "Todos" }));
+        jCopcaoBusca.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Opção da Busca", "Item 2", "Item 3", "Item 4" }));
         jCopcaoBusca.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jCopcaoBuscaActionPerformed(evt);
@@ -173,6 +172,11 @@ public class BuscaGUI extends javax.swing.JFrame {
         });
 
         jTentBuscar.setEditable(false);
+        jTentBuscar.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jTentBuscarFocusGained(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -334,6 +338,17 @@ public class BuscaGUI extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jBexcluirActionPerformed
 
+    private void jTentBuscarFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTentBuscarFocusGained
+        if(jTentBuscar.getText()=="Digite CPF ..."){
+            jTentBuscar.setText("");
+        }//if
+        else if(jTentBuscar.getText()=="Digite Codigo ..."){
+            jTentBuscar.setText("");
+        }//else if
+                     
+
+    }//GEN-LAST:event_jTentBuscarFocusGained
+
     private void jBalterarActionPerformed(java.awt.event.ActionEvent evt) {
        
     	alterarDados();
@@ -422,8 +437,6 @@ public class BuscaGUI extends javax.swing.JFrame {
     private javax.swing.JTextField jTnome;
     private javax.swing.JTextField jTnumero;
     private javax.swing.JTextField jTtelefone;
-    static javax.swing.JPanel panel;
-    static BuscaGUI frameBusca;
     // End of variables declaration//GEN-END:variables
 
     public void inserirDados(){
