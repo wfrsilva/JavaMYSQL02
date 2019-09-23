@@ -534,8 +534,8 @@ public class BuscaGUI extends javax.swing.JFrame {
         	java.sql.Statement stmt = con.createStatement();
         	
         	int buscaCodigo = Integer.parseInt(jTentBuscar.getText());
-        	//String buscaCPF = jTentBuscar.getText();
-        	String buscaCPF = jTcpf.getText();
+        	String buscaCPF = jTentBuscar.getText();
+        	//String buscaCPF = jTcpf.getText();
         	
         	ResultSet rs = null;
         	
@@ -567,11 +567,16 @@ public class BuscaGUI extends javax.swing.JFrame {
         		
         	}//else if
         	else if(jCopcaoBusca.getSelectedIndex() == 2) {
+        		System.out.println("buscaCPF: "+buscaCPF);
         		rs = stmt.executeQuery("Select * from TabFicha where CPF = " + buscaCPF);
+        		
         		
         		while(rs.next()) {
         			String cpf = rs.getString("CPF");
         			jTcpf.setText(cpf);
+        			
+        			int mat = rs.getInt("Matricula");
+        			jTcodigo.setText(String.valueOf(mat));
         			
         			jTnome.setText(rs.getString("Nome"));
         			jTtelefone.setText(rs.getString("Telefone"));
@@ -599,10 +604,10 @@ public class BuscaGUI extends javax.swing.JFrame {
         	
         }//try
         catch (SQLException erro) {
-        	JOptionPane.showMessageDialog(null,  "Erro comando SQL" + erro.getMessage());
+        	JOptionPane.showMessageDialog(null,  "Erro comando SQL \r\n  " + erro.getMessage(), "buscarDados - SQLException", 0);
         }//catch
         catch (ClassNotFoundException erro) {
-        	JOptionPane.showMessageDialog(null, "Driver NÃO Encontrado");
+        	JOptionPane.showMessageDialog(null, "Driver NÃO Encontrado", "buscarDados - ClassNotFoundException", 0);
         }//catch
         
     }//BurcarDados
@@ -667,10 +672,10 @@ public class BuscaGUI extends javax.swing.JFrame {
     		
     	}//try
     	catch (SQLException erro) {
-        	JOptionPane.showMessageDialog(null,  "Erro comando SQL" + erro.getMessage());
+        	JOptionPane.showMessageDialog(null,  "Erro comando SQL\r" + erro.getMessage(), "alterarDados - SQLException", 0);
         }//catch
         catch (ClassNotFoundException erro) {
-        	JOptionPane.showMessageDialog(null, "Driver NÃO Encontrado");
+        	JOptionPane.showMessageDialog(null, "Driver NÃO Encontrado\r" + erro.getMessage(), "alterarDados - ClassNotFoundException", 0);
         }//catch
     		
     }//alterarDados
@@ -701,10 +706,10 @@ public class BuscaGUI extends javax.swing.JFrame {
     		
     	}//try
     	catch(SQLException erro) {
-    		JOptionPane.showMessageDialog(null,  "Erro Cmdo SQL" + erro.getMessage());
+    		JOptionPane.showMessageDialog(null,  "Erro Cmdo SQL \r" + erro.getMessage(), "excluirDados - SQLException", 0);
     	}//catch
     	catch(ClassNotFoundException erro){
-    		JOptionPane.showMessageDialog(null,  "Driver NÃO Encontrado!");
+    		JOptionPane.showMessageDialog(null,  "Driver NÃO Encontrado!\r" + erro.getMessage(), "excluirDados - ClassNotFoundException", 0);
     	}//catch
     	
     	
