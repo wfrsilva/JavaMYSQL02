@@ -59,13 +59,13 @@ public class BuscaGUI extends javax.swing.JFrame {
         jBlimpar = new javax.swing.JButton();
         jBsair = new javax.swing.JButton();
         jBexcluir = new javax.swing.JButton();
-        jBalterar = new javax.swing.JButton();
         jCopcaoBusca = new javax.swing.JComboBox<>();
         jTentBuscar = new javax.swing.JTextField();
+        jBalterar = new javax.swing.JButton();
 
         jLabel2.setText("jLabel2");
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLcodigo.setText("Codigo:");
 
@@ -156,15 +156,8 @@ public class BuscaGUI extends javax.swing.JFrame {
             }
         });
 
-        jBalterar.setText("Alterar");
-        jBalterar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBalterarActionPerformed(evt);
-            }
-        });
-
         jCopcaoBusca.setEditable(true);
-        jCopcaoBusca.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Opção da Busca", "Item 2", "Item 3", "Item 4" }));
+        jCopcaoBusca.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Opção da Busca", "Codigo", "CPF", "Todos" }));
         jCopcaoBusca.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jCopcaoBuscaActionPerformed(evt);
@@ -175,6 +168,13 @@ public class BuscaGUI extends javax.swing.JFrame {
         jTentBuscar.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 jTentBuscarFocusGained(evt);
+            }
+        });
+
+        jBalterar.setText("Alterar");
+        jBalterar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBalterarActionPerformed(evt);
             }
         });
 
@@ -218,8 +218,9 @@ public class BuscaGUI extends javax.swing.JFrame {
                                 .addComponent(jTcidade))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jBexcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jBalterar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jBalterar, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLestado)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -335,25 +336,24 @@ public class BuscaGUI extends javax.swing.JFrame {
     }//jBlimparActionPerformed
 
     private void jBexcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBexcluirActionPerformed
-        // TODO add your handling code here:
+        excluirDados();
     }//GEN-LAST:event_jBexcluirActionPerformed
 
     private void jTentBuscarFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTentBuscarFocusGained
-        if(jTentBuscar.getText()=="Digite CPF ..."){
+        System.out.println("private void jTentBuscarFocusGained")  ;
+        if(jTentBuscar.getText().equals("Digite CPF ...")){
             jTentBuscar.setText("");
         }//if
-        else if(jTentBuscar.getText()=="Digite Codigo ..."){
+        else if(jTentBuscar.getText().equals("Digite Codigo ...")){
             jTentBuscar.setText("");
         }//else if
                      
 
     }//GEN-LAST:event_jTentBuscarFocusGained
 
-    private void jBalterarActionPerformed(java.awt.event.ActionEvent evt) {
-       
-    	alterarDados();
-       
-    }//jBalterarActionPerformed
+    private void jBalterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBalterarActionPerformed
+            alterarDados();
+    }//GEN-LAST:event_jBalterarActionPerformed
 
     private void jCopcaoBuscaActionPerformed(java.awt.event.ActionEvent evt) {
         
@@ -547,8 +547,8 @@ public class BuscaGUI extends javax.swing.JFrame {
         	java.sql.Statement stmt = con.createStatement();
         	
         	int buscaCodigo = Integer.parseInt(jTentBuscar.getText());
-        	//String buscaCPF = jTentBuscar.getText();
-        	String buscaCPF = jTcpf.getText();
+        	String buscaCPF = jTentBuscar.getText();
+        	//String buscaCPF = jTcpf.getText();
         	
         	ResultSet rs = null;
         	
@@ -585,6 +585,9 @@ public class BuscaGUI extends javax.swing.JFrame {
         		while(rs.next()) {
         			String cpf = rs.getString("CPF");
         			jTcpf.setText(cpf);
+                                
+                                int mat = rs.getInt("Matricula");
+        			jTcodigo.setText(String.valueOf(mat));
         			
         			jTnome.setText(rs.getString("Nome"));
         			jTtelefone.setText(rs.getString("Telefone"));
@@ -612,10 +615,10 @@ public class BuscaGUI extends javax.swing.JFrame {
         	
         }//try
         catch (SQLException erro) {
-        	JOptionPane.showMessageDialog(null,  "Erro comando SQL" + erro.getMessage());
+        	JOptionPane.showMessageDialog(null,  "Erro comando SQL \r\n" + erro.getMessage(),"buscarDados() > SQLException", 0);
         }//catch
         catch (ClassNotFoundException erro) {
-        	JOptionPane.showMessageDialog(null, "Driver NÃO Encontrado");
+        	JOptionPane.showMessageDialog(null, "Driver NÃO Encontrado\r\n" + erro.getMessage(),"buscarDados() > ClassNotFoundException", 0);
         }//catch
         
     }//BurcarDados
@@ -680,10 +683,10 @@ public class BuscaGUI extends javax.swing.JFrame {
     		
     	}//try
     	catch (SQLException erro) {
-        	JOptionPane.showMessageDialog(null,  "Erro comando SQL" + erro.getMessage());
+        	JOptionPane.showMessageDialog(null,  "Erro comando SQL\r\n" + erro.getMessage(),"alterarDados - SQLException",0);
         }//catch
         catch (ClassNotFoundException erro) {
-        	JOptionPane.showMessageDialog(null, "Driver NÃO Encontrado");
+        	JOptionPane.showMessageDialog(null, "Driver NÃO Encontrado\r\n" + erro.getMessage(),"alterarDados - ClassNotFoundException",0);
         }//catch
     		
     }//alterarDados
@@ -700,10 +703,10 @@ public class BuscaGUI extends javax.swing.JFrame {
     		int registro = stmt.executeUpdate("delete from TabFicha where Matricula="+ excluirMatricula);
     		
     		if(registro != 0) {
-    			JOptionPane.showMessageDialog(null,"Dados da Matricula " + excluirMatricula + "Excluídos!");
+    			JOptionPane.showMessageDialog(null,"Dados da Matricula " + excluirMatricula + " excluídos!", excluirMatricula + " removido!", 1);
     		}//if
     		else {
-    			JOptionPane.showMessageDialog(null,  "Dados NÃO Excluídos!");
+    			JOptionPane.showMessageDialog(null,  "Dados NÃO Excluídos!","NÃO Excluídos!" ,JOptionPane.ERROR_MESSAGE);
     		}//else
     		
     		stmt.close();
@@ -714,10 +717,10 @@ public class BuscaGUI extends javax.swing.JFrame {
     		
     	}//try
     	catch(SQLException erro) {
-    		JOptionPane.showMessageDialog(null,  "Erro Cmdo SQL" + erro.getMessage());
+    		JOptionPane.showMessageDialog(null,  "Erro Cmdo SQL \r\\n" + erro.getMessage(), "excluirDados - SQLException", 0);
     	}//catch
     	catch(ClassNotFoundException erro){
-    		JOptionPane.showMessageDialog(null,  "Driver NÃO Encontrado!");
+    		JOptionPane.showMessageDialog(null,  "Driver NÃO Encontrado!\r\\n" + erro.getMessage(), "excluirDados - ClassNotFoundException", 0);
     	}//catch
     	
     	
