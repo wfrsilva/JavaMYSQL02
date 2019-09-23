@@ -66,7 +66,7 @@ public class BuscaGUI extends javax.swing.JFrame {
 
 
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLcodigo.setText("Codigo:");
 
@@ -589,7 +589,7 @@ public class BuscaGUI extends javax.swing.JFrame {
         			consulta = false;
         			JOptionPane.showMessageDialog(null, "Dados encontrados!");
         			
-        		}//while
+        		}//whilesetDefaultCloseOperation
         		
         	}//else if
         	
