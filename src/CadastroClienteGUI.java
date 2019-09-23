@@ -379,10 +379,10 @@ public class CadastroClienteGUI extends javax.swing.JFrame {
             con.close();
         }//try
         catch(SQLException erro) {
-        	JOptionPane.showMessageDialog(null, "Erro comando SQL \r" + erro.getMessage(), "inserirDados - SQLException", 0);
+        	JOptionPane.showMessageDialog(null, "Erro comando SQL " + erro.getMessage());
         }//catch
         catch (ClassNotFoundException erro) {
-        	JOptionPane.showMessageDialog(null, "ClassNotFoundException - Driver não encontrado!\r"+ erro.getMessage(), "inserirDados - ClassNotFoundException", 0);
+        	JOptionPane.showMessageDialog(null, "ClassNotFoundException - Driver não encontrado!\r"+ erro.getMessage());
         }//catch
         
     }//inserirDados
