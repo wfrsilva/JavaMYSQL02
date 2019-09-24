@@ -22,6 +22,10 @@ http://blog.tiagopassos.com/2010/10/12/acessar-o-mysql-pelo-prompt-do-windows/
 
 https://www.youtube.com/watch?v=hfq828fZvzc
 
+# Tutorial de Hospedagem de Site em PHP com Banco de Dados MySQL Infinity Free
+
+https://www.youtube.com/watch?v=tHUC3foZdz8
+
 # Atalhos Úteis de NetBeans, e outros detalhes.
 
 No netBeans escreva o codigo em negrito e aperte tab, ele irá imprimir o texto correspondente:
