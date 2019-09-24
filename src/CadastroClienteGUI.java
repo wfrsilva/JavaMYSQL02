@@ -289,7 +289,8 @@ public class CadastroClienteGUI extends javax.swing.JFrame {
     public void inserirDados(){
         try{
             Class.forName("com.mysql.jdbc.Driver");
-            java.sql.Connection con = DriverManager.getConnection("jdbc:mysql://localhost/BDCadastro", "root", "");
+            //java.sql.Connection con = DriverManager.getConnection("jdbc:mysql://localhost/BDCadastro", "root", "");
+            java.sql.Connection con = DriverManager.getConnection("jdbc:mysql://databases-auth.000webhost.com/id10995168_bdcadastro", "id10995168_root", "wfrs231078");
             java.sql.Statement stmt = con.createStatement();
             
             int cadMat = Integer.parseInt(jTcodigo.getText());
