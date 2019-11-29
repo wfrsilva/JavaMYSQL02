@@ -36,8 +36,13 @@ fore => foreach pre montado.
 https://www.arruda.blog.br/programacao/infos-uteis-para-prova-1-de-pcsnetbeans/
 
 
+# MySQL Remoto
+
+https://melhor-hospedagem-sites.net/wp/mysql-gratis-com-acesso-remoto-livre/
 
 https://remotemysql.com/databases.php
+
+https://remotemysql.com/phpmyadmin/sql.php?server=1&db=qxWjVyJFkL&table=tabficha&pos=0
 
 Created!
 You have successfully created a new database. The details are below.
