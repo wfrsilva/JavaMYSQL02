@@ -34,3 +34,24 @@ psvm => public static void main(String[] args)
 fore => foreach pre montado.
 
 https://www.arruda.blog.br/programacao/infos-uteis-para-prova-1-de-pcsnetbeans/
+
+
+
+https://remotemysql.com/databases.php
+
+Created!
+You have successfully created a new database. The details are below.
+
+Username: assqxWjVyJFkL2018
+
+Database name: assqxWjVyJFkL2018
+
+Password: assntcXkZXnIj2018
+
+Server: remotemysql.com
+
+Port: 3306
+
+These are the username and password to log in to your database and phpMyAdmin
+
+Make sure you keep your password secure. Ensure you keep back ups of your database in case it gets deleted.
